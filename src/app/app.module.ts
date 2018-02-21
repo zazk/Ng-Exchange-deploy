@@ -64,8 +64,6 @@ type StoreType = {
 
     /**
      * This section will import the `DevModuleModule` only in certain build types.
-import { Landing.component.tsComponent } from './landing.component.ts/landing.component.ts.component';
-import { LandingComponent } from './landing/landing.component';
      * When the module is not imported it will get tree shaked.
      * This is a simple example, a big app should probably implement some logic
      */

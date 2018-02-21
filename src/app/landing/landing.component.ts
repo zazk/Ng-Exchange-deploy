@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Title } from '../home/title';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-landing',
@@ -14,7 +15,7 @@ export class LandingComponent implements OnInit {
   public value: any;
   public from: any = 1;
   public to: any;
-  private formattedAmount: string = '0';
+  private formattedAmount: string = '1';
   private data;
   private currencyIndex: number;
 
@@ -24,23 +25,24 @@ export class LandingComponent implements OnInit {
     console.log('hello `Landing` component');
     this.from = this.setCurrency(this.from);
     this.days =  Array.from({length: 20}, (v, k) => k + 1 );
-
-    this.converter.getData().subscribe((data) => {
-      this.data = data;
-      console.log('Data from Currency on Landing', this.data);
-      this.currencyIndex = data['rates']['EUR'];
-      this.to = this.setCurrency(this.currencyIndex, 'EUR');
+    let timer = Observable.timer(0, 1 * 60 * 1000);
+    let obj = timer.subscribe( (t) => {
+      this.converter.getData().subscribe((data) => {
+        this.data = data;
+        console.log('Data from Currency on Landing', this.data);
+        this.currencyIndex = data['rates']['EUR'];
+        this.to = this.setCurrency(this.currencyIndex, 'EUR');
+      });
     });
   }
+
   public transformCurrency(element) {
+    console.log('transformCurrency', element.target.value, this.from);
     try {
       if (typeof (element.target.value) !== 'number') {
-        this.formattedAmount = this.setCurrency(this.from);
+        this.formattedAmount = this.setCurrency( this.from.replace(/[USD,]/g, '') );
       }
-      // Remove or comment this line if you dont want
-      // to show the formatted amount in the textbox.
       element.target.value = this.formattedAmount;
-      this.to = this.setCurrency( ( this.from * this.currencyIndex), 'EUR');
     } catch (e) {
       console.log(e);
     }
@@ -57,6 +59,10 @@ export class LandingComponent implements OnInit {
     } catch (e) {
       console.log(e);
     }
+  }
+  public convertInputCurrency() {
+    console.log('Convert Input Currency', this.to, 'this.form', this.from);
+    this.to = this.setCurrency( ( this.from.replace(/[USD,]/g, '') * this.currencyIndex), 'EUR');
   }
   private setCurrency(value, currency: string = 'USD') {
     return this.currencyPipe.transform(value, currency, 'code', '1.2-4');
