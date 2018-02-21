@@ -15,4 +15,8 @@ export class Title {
     return this.http.get('http://api.fixer.io/latest?base=USD&symbols=EUR');
   }
 
+  public getMultileData() {
+    console.log('Title#getMultipleData(): Get Multiple Data');
+    return this.http.get('http://api.fixer.io/latest?base=USD');
+  }
 }
