@@ -1,14 +1,24 @@
 <div>
-  <div class="hero is-primary">
+  <div class="hero is-primary is-flexible">
     <div class="hero-body">
-      <div class="field is-grouped is-grouped-centered">
-        <p class="control">
-          <input placeholder="USD" class="input" type="text" name="from" id="from">
-        </p>
-        <p class="control">
-          <input placeholder="EUR" class="input" type="text" name="from" id="from">
-        </p>
+      <div class="level">
+        <div class="level-item"></div>
+        <div class="level-item">
+          <p class="control">
+            <input placeholder="USD" class="input" type="text" name="from" id="from" 
+            [(ngModel)]="from" (blur)="transformCurrency($event)" (focus)="removeCurrency($event)"
+            >
+          </p>
+        </div>
+        <div class="level-item">
+          <p class="control">
+            <input placeholder="EUR" class="input" type="text" name="from" id="to" 
+            [(ngModel)]="to" readonly value="{{1 | currency:'EUR':'symbol':'1.2-4'}}">
+          </p>
+        </div>
+        <div class="level-item"></div>
       </div>
+      
       <div class="field is-grouped is-grouped-centered">
         <p class="control">
           <button class="button">
