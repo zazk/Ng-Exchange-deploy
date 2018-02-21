@@ -1,17 +1,39 @@
-<div class="hero is-primary">
-  <div class="field is-grouped is-grouped-centered">
-    <p class="control">
-      <input placeholder="USD" class="input" type="text" name="from" id="from">
-    </p>
-    <p class="control">
-      <input placeholder="USD" class="input" type="text" name="from" id="from">
-    </p>
+<div>
+  <div class="hero is-primary">
+    <div class="hero-body">
+      <div class="field is-grouped is-grouped-centered">
+        <p class="control">
+          <input placeholder="USD" class="input" type="text" name="from" id="from">
+        </p>
+        <p class="control">
+          <input placeholder="EUR" class="input" type="text" name="from" id="from">
+        </p>
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <p class="control">
+          <button class="button">
+            Calculate
+          </button>
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="field is-grouped is-grouped-centered">
-    <p class="control">
-      <button class="button">
-        Exchange
-      </button>
-    </p>
+</div>
+<div class="container">
+  <!-- Main container -->
+  <div class="columns  is-multiline ">
+      
+      <div class="column is-one-third" *ngFor="let item of days">
+        <div class="box">
+          <article class="media">
+            <div class="media-left">
+              EUR
+            </div>
+            <div class="media-content">
+              {{item}}th January
+            </div>
+          </article>
+        </div>
+      </div>
   </div>
 </div>

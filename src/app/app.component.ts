@@ -29,7 +29,7 @@ import { AppState } from './app.service';
             Subtitle
           </h2>
         </div>
-        <nav class="has-text-centered">
+        <nav class="tabs is-boxed is-fullwidth">
           <a [routerLink]=" ['./landing'] "
             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
             Landing
@@ -37,10 +37,6 @@ import { AppState } from './app.service';
           <a [routerLink]=" ['./'] "
             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
             Index
-          </a>
-          <a [routerLink]=" ['./home'] "
-            routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-            Home
           </a>
           <a [routerLink]=" ['./detail'] "
             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
@@ -56,7 +52,7 @@ import { AppState } from './app.service';
           </a>
           <a *ngIf="showDevModule" [routerLink]=" ['./dev-module'] "
             routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-            DevModule
+            Dev
           </a>
         </nav>
       </div>
@@ -69,7 +65,40 @@ import { AppState } from './app.service';
       <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
       <footer>
-        <span>Ng Module</span>
+        <section class="hero is-primary">
+          <div class="hero-body">
+            <div class="container">
+              <div class="columns is-vcentered">
+                <div class="column is-one-third is-left">
+                  <p class="title">Exchange <strong>Newsletter</strong></p>
+                  <p class="subtitle">Get notified when is ready!</p>
+                </div>
+        
+                <div class="column">
+                  <form action="" method="POST" accept-charset="utf-8">
+                      <div class="field is-grouped">
+                        <div class="control has-icons-left is-expanded">
+                          <input type="email" value="" name="email" 
+                            class="input is-flat required email" 
+                            placeholder="email address" required="" />
+                          <span class="icon is-small is-left">
+                          </span>
+                        </div>
+                        <div class="control">
+                          <div class="is-hidden">
+                            <input type="text" name="hp" id="hp">
+                          </div>
+                          <input type="hidden" name="list" value="So5UY3O9gHJkq892bn763Tyf4A">
+                          <input type="submit" value="Subscribe" name="submit" 
+                            class="button is-white is-outlined" />
+                        </div>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </footer>
     </div>
   </section>
